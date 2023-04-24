@@ -34,6 +34,10 @@ SWAGGERUI_BLUEPRINT = get_swaggerui_blueprint(
 app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 ### end swagger specific ###
 
+@app.route("/")
+def index():
+    return "<div><h1>Hello BECYB Team!</h1><p>Go to /swagger path to see available schemas and endpoints</p><div>"
+
 @app.route('/get-prediction', methods=['POST'])
 def get_prediction():
     # Get the input data
