@@ -1,0 +1,113 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "becyb",
+      "version": "1.0.0",
+      "title": "BECYB Model Prediction results",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "servers": [
+      {
+        "url": "/"
+      }
+    ],
+    "tags": [
+      {
+        "name": "Post Preictions Request",
+        "description": "Example API for requesting and return post predictions requests"
+      }
+    ],
+    "paths": {
+      "/get-prediction": {
+        "post": {
+          "tags": [
+            "Model Prediction Request"
+          ],
+          "summary": "Model Prediction Request",
+          "requestBody": {
+            "description": "Model Prediction Request Post Object",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/modelPredictionPostBody"
+                }
+              }
+            }
+          },
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "201": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/components/schemas/modelPredictionResponse"
+              }
+            },
+            "400": {
+              "description": "Failed. Bad post data."
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "modelPredictionPostBody": {
+          "type": "object",
+          "properties": {
+            "topic_ids": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "modelPredictionResponse": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "post_id": {
+                    "type": "number"
+                  },
+                  "FK_uzytkownik_id": {
+                    "type": "number"
+                  },
+                  "czas_postu": {
+                    "type": "string"
+                  },
+                  "czy_odpowiedz": {
+                    "type": "boolean"
+                  },
+                  "id_oryginalnego": {
+                    "type": "number"
+                  },
+                  "liczba_like": {
+                    "type": "number"
+                  },
+                  "liczba_wyswietlen": {
+                    "type": "number"
+                  },
+                  "tekst_postu": {
+                    "type": "string"
+                  },
+                  "tytul_postu": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
